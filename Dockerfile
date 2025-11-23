@@ -1,20 +1,18 @@
-FROM maven:3.5-jdk-8 as builder
+## Fixed 
+FROM maven:3.9.6-eclipse-temurin-8 AS builder
 
 WORKDIR /app
 
-# download artifacts
 COPY pom.xml .
 COPY assembly.xml .
 RUN mvn dependency:resolve
-RUN mvn verify
-RUN mvn compiler:help
 
-# build
 COPY src ./src
 RUN mvn clean package -DskipTests
+
 RUN mv target/ysoserial-*all*.jar target/ysoserial.jar
 
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:8-jdk
 
 WORKDIR /app
 
